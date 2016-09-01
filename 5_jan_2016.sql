@@ -66,5 +66,19 @@ from departments d,
 where d.manager_id = e.employee_id and  d.department_id = empcount.department_id  
 
 
+--  Display departments where we have more than 10 employees or manager is drawing more than 10000
+
+select d.department_id,department_name, salary
+from   departments d join employees e on ( d.manager_id = e.employee_id)
+where d.department_id in  
+    (select department_id
+     from employees
+     group by department_id
+     having count(*) > 10)
+   or d.manager_id in
+      (select employee_id 
+       from employees
+       where salary > 10000)
+order by 1       
 
 
