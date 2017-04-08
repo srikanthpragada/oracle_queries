@@ -1,3 +1,16 @@
+-- display job title and no. of employee doing or did the job
+
+select job_title, count(*)
+from 
+  ( select job_id,employee_id
+    from employees
+    union
+    select job_id, employee_id
+    from job_history )
+natural join jobs
+group by job_title
+
+
 -- Display 5th highest salary 
 
 select *
