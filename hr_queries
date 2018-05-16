@@ -1,0 +1,7 @@
+-- Display Manager name and how many employees manager is managing 
+select m.first_name, count(e.employee_id)
+from employees e join employees m
+on ( e.manager_id = m.employee_id)
+group by  m.first_name
+order by 1
+
